@@ -15,7 +15,7 @@
     <div class="toolbx">
       <div class="option">
         <div class="text-f">SHIFT</div>
-        <button class="optionBtn">3</button>
+        <input type="number" min="1" value="1" />
       </div>
       <div class="option">
         <div class="text-f">CIPHER</div>

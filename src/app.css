@@ -38,6 +38,35 @@ button {
     padding: 2px 19px 2px 19px;
 }
 
+/* Hide arrows in Chrome, Safari, and Edge */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+input {
+    all: unset;
+    color: var(--primary);
+    font-family: 'Bold Pixels';
+    font-size: 32px;
+    width: 30px;
+    height: fit-content;
+    background-color: black;
+    border-radius: 16px;
+    padding: 2px 19px 2px 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .nav {
     box-sizing: border-box;
     width: 100%;
