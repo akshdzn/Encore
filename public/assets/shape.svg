@@ -1,0 +1,8 @@
+<svg width="76" height="21" viewBox="0 0 76 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect opacity="0.7" x="38" width="38" height="5" fill="black"/>
+<rect opacity="0.5" width="38" height="5" transform="matrix(-1 0 0 1 38 0)" fill="black"/>
+<rect opacity="0.7" x="21" y="8" width="55" height="5" fill="black"/>
+<rect opacity="0.5" width="21" height="5" transform="matrix(-1 0 0 1 21 8)" fill="black"/>
+<rect opacity="0.7" x="10" y="16" width="66" height="5" fill="black"/>
+<rect opacity="0.5" y="16" width="10" height="5" fill="black"/>
+</svg>
