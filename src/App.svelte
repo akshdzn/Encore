@@ -12,11 +12,13 @@
     } else {
       currentMode = 0;
     }
-    console.log(currentMode);
   }
 
   // Caesar Cipher
   let cipherCode;
+  let encodeText = "";
+  let decodeText = "";
+  let shift = 1;
 
   function caesarCipher(str, shift) {
     // Ensure shift is between 0–25
@@ -42,6 +44,37 @@
       })
       .join("");
   }
+
+  function caesarDecipher(str, shift) {
+    // Ensure shift is between 0–25
+    shift = shift % 26;
+
+    return str
+      .split("")
+      .map((char) => {
+        let code = char.charCodeAt(0);
+
+        // Uppercase A–Z
+        if (code >= 65 && code <= 90) {
+          return String.fromCharCode(((code - 65 - shift + 26) % 26) + 65);
+        }
+        // Lowercase a–z
+        else if (code >= 97 && code <= 122) {
+          return String.fromCharCode(((code - 97 - shift + 26) % 26) + 97);
+        }
+        // symbols
+        else {
+          return char;
+        }
+      })
+      .join("");
+  }
+
+  $: if (currentMode === 1) {
+    decodeText = caesarCipher(encodeText, shift);
+  } else if (currentMode === 0) {
+    encodeText = caesarDecipher(decodeText, shift);
+  }
 </script>
 
 <main>
@@ -58,7 +91,7 @@
     <div class="toolbx">
       <div class="option">
         <div class="text-f">SHIFT</div>
-        <input type="number" min="1" value={currentMode} />
+        <input type="number" min="1" bind:value={shift} />
       </div>
       <div class="option">
         <div class="text-f">CIPHER</div>
@@ -76,6 +109,7 @@
         on:click={() => {
           setMode(1);
         }}
+        bind:value={encodeText}
       ></textarea>
     </div>
     <div class="text-box">
@@ -86,6 +120,7 @@
         on:click={() => {
           setMode(0);
         }}
+        bind:value={decodeText}
       ></textarea>
     </div>
   </div>
