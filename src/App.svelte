@@ -81,6 +81,11 @@
   } else if (currentMode === 0) {
     encodeText = caesarDecipher(decodeText, shift);
   }
+
+  // copy text
+  function copyText() {
+    navigator.clipboard.writeText(decodeText);
+  }
 </script>
 
 <main>
@@ -91,7 +96,12 @@
         <div class="text-f">ENCORE</div>
         <img src="/assets/shape.svg" alt="encore logo" />
       </div>
-      <button aria-label="About">GITHUB</button>
+      <button
+        aria-label="About"
+        on:click={() => {
+          window.open("https://github.com/akshdzn/Encore", "_blank").focus();
+        }}>GITHUB</button
+      >
     </div>
     <!-- tools -->
     <div class="toolbx">
@@ -103,7 +113,12 @@
         <div class="text-f">CIPHER</div>
         <button class="optionBtn">Caesar</button>
       </div>
-      <button aria-label="Copy">COPY</button>
+      <button
+        aria-label="Copy"
+        on:click={() => {
+          copyText();
+        }}>COPY</button
+      >
     </div>
   </div>
   <div class="content">
