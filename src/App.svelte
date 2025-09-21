@@ -20,6 +20,12 @@
   let decodeText = "";
   let shift = 1;
 
+  $: if (shift > 25) {
+    shift = 25;
+  } else if (shift < 1) {
+    shift = 1;
+  }
+
   function caesarCipher(str, shift) {
     // Ensure shift is between 0–25
     shift = shift % 26;
@@ -91,7 +97,7 @@
     <div class="toolbx">
       <div class="option">
         <div class="text-f">SHIFT</div>
-        <input type="number" min="1" bind:value={shift} />
+        <input type="number" min="1" max="25" bind:value={shift} />
       </div>
       <div class="option">
         <div class="text-f">CIPHER</div>
