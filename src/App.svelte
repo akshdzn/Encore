@@ -14,10 +14,23 @@
     }
   }
 
-  // Caesar Cipher
-  let cipherCode;
+  // swtich ciphers
+  let cipherIndex = ["caesar", "base64"];
+  let currentCipherIndex = 0;
+  let currentCipher = cipherIndex[currentCipherIndex];
+
+  function nextCipher() {
+    currentCipherIndex = (currentCipherIndex + 1) % cipherIndex.length;
+    currentCipher = cipherIndex[currentCipherIndex];
+  }
+
+  // encoded and decoded text
   let encodeText = "";
   let decodeText = "";
+
+  // Caesar Cipher
+  // show and hide the shift option
+
   let shift = 1;
 
   $: if (shift > 25) {
@@ -76,12 +89,30 @@
       .join("");
   }
 
-  $: if (currentMode === 1) {
-    decodeText = caesarCipher(encodeText, shift);
-  } else if (currentMode === 0) {
-    encodeText = caesarDecipher(decodeText, shift);
+  $: if (currentCipher == "caesar") {
+    if (currentMode === 1) {
+      decodeText = caesarCipher(encodeText, shift);
+    } else if (currentMode === 0) {
+      encodeText = caesarDecipher(decodeText, shift);
+    }
   }
 
+  // base64
+  function base64Cipher(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function base64Decipher(str) {
+    return decodeURIComponent(escape(atob(str)));
+  }
+
+  $: if (currentCipher == "base64") {
+    if (currentMode == 1) {
+      decodeText = base64Cipher(encodeText);
+    } else if (currentMode == 0) {
+      encodeText = base64Decipher(decodeText);
+    }
+  }
   // copy text
   function copyText() {
     navigator.clipboard.writeText(decodeText);
@@ -105,13 +136,19 @@
     </div>
     <!-- tools -->
     <div class="toolbx">
-      <div class="option">
-        <div class="text-f">SHIFT</div>
-        <input type="number" min="1" max="25" bind:value={shift} />
-      </div>
+      {#if currentCipher == "caesar"}
+        <div class="option" id="shift">
+          <div class="text-f">SHIFT</div>
+          <input type="number" min="1" max="25" bind:value={shift} />
+        </div>{/if}
       <div class="option">
         <div class="text-f">CIPHER</div>
-        <button class="optionBtn">Caesar</button>
+        <button
+          class="optionBtn"
+          on:click={() => {
+            nextCipher();
+          }}>{currentCipher}</button
+        >
       </div>
       <button
         aria-label="Copy"
