@@ -15,7 +15,7 @@
   }
 
   // swtich ciphers
-  let cipherIndex = ["caesar", "base64"];
+  let cipherIndex = ["Caesar", "base64", "Binary"];
   let currentCipherIndex = 0;
   let currentCipher = cipherIndex[currentCipherIndex];
 
@@ -89,7 +89,7 @@
       .join("");
   }
 
-  $: if (currentCipher == "caesar") {
+  $: if (currentCipher == "Caesar") {
     if (currentMode === 1) {
       decodeText = caesarCipher(encodeText, shift);
     } else if (currentMode === 0) {
@@ -113,6 +113,38 @@
       encodeText = base64Decipher(decodeText);
     }
   }
+
+  // binary
+  function textToBinary(text) {
+    let binaryArray = [];
+    for (let i = 0; i < text.length; i++) {
+      // Convert each character to its ASCII value and then to binary
+      let binary = text.charCodeAt(i).toString(2);
+      // Pad with leading zeros to ensure 8 bits
+      binaryArray.push(binary.padStart(8, "0"));
+    }
+    return binaryArray.join(" "); // Join the binary values with spaces
+  }
+
+  function binaryToText(binaryString) {
+    let text = "";
+    // Split the binary string into an array of binary values
+    const binaryArray = binaryString.split(" ");
+    for (let i = 0; i < binaryArray.length; i++) {
+      // Convert each binary value to decimal and then to character
+      text += String.fromCharCode(parseInt(binaryArray[i], 2));
+    }
+    return text;
+  }
+
+  $: if (currentCipher == "Binary") {
+    if (currentMode == 1) {
+      decodeText = textToBinary(encodeText);
+    } else if (currentMode == 0) {
+      encodeText = binaryToText(decodeText);
+    }
+  }
+
   // copy text
   function copyText() {
     navigator.clipboard.writeText(decodeText);
@@ -136,7 +168,7 @@
     </div>
     <!-- tools -->
     <div class="toolbx">
-      {#if currentCipher == "caesar"}
+      {#if currentCipher == "Caesar"}
         <div class="option" id="shift">
           <div class="text-f">SHIFT</div>
           <input type="number" min="1" max="25" bind:value={shift} />
@@ -164,6 +196,7 @@
         name="text"
         class="text"
         id="encode"
+        wrap="hard"
         on:click={() => {
           setMode(1);
         }}
@@ -175,6 +208,7 @@
         name="text"
         class="text"
         id="decode"
+        wrap="hard"
         on:click={() => {
           setMode(0);
         }}
