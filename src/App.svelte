@@ -33,10 +33,13 @@
 
   let shift = 1;
 
-  $: if (shift > 25) {
-    shift = 25;
-  } else if (shift < 1) {
-    shift = 1;
+  // shift fixer
+  function limitShift() {
+    if (shift > 25) {
+      shift = 25;
+    } else if (shift < 1) {
+      shift = 1;
+    }
   }
 
   function caesarCipher(str, shift) {
@@ -182,7 +185,13 @@
       {#if currentCipher == "Caesar"}
         <div class="option" id="shift">
           <div class="text-f">SHIFT</div>
-          <input type="number" min="1" max="25" bind:value={shift} />
+          <input
+            type="number"
+            min="1"
+            max="25"
+            on:blur={limitShift}
+            bind:value={shift}
+          />
         </div>{/if}
       <div class="option">
         <div class="text-f">CIPHER</div>
