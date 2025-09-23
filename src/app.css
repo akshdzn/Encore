@@ -168,6 +168,15 @@ input {
     display: none;
 }
 
+#mobile {
+    display: none;
+}
+
+.buttons-top {
+    display: flex;
+    gap: 8px;
+}
+
 @media screen and (max-width: 1064px) {
     .nav {
         flex-direction: column;
@@ -191,4 +200,27 @@ input {
     .content {
         flex-direction: column;
     }
+
+    .text-f {
+        font-size: 30px;
+    }
+
+    button {
+        font-size: 22px;
+        padding: 2px 9px 2px 9px;
+    }
+
+    input {
+        font-size: 22px;
+        padding: 2px 9px 2px 9px;
+    }
+
+    #mobile {
+        display: block;
+    }
+
+    #desktop {
+        display: none;
+    }
 }
+

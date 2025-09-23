@@ -159,12 +159,23 @@
         <div class="text-f">ENCORE</div>
         <img src="/assets/shape.svg" alt="encore logo" />
       </div>
-      <button
-        aria-label="About"
-        on:click={() => {
-          window.open("https://github.com/akshdzn/Encore", "_blank").focus();
-        }}>GITHUB</button
-      >
+
+      <div class="buttons-top">
+        <button
+          aria-label="About"
+          on:click={() => {
+            window.open("https://github.com/akshdzn/Encore", "_blank").focus();
+          }}>GITHUB</button
+        >
+
+        <button
+          id="mobile"
+          aria-label="Copy"
+          on:click={() => {
+            copyText();
+          }}>COPY</button
+        >
+      </div>
     </div>
     <!-- tools -->
     <div class="toolbx">
@@ -183,6 +194,7 @@
         >
       </div>
       <button
+        id="desktop"
         aria-label="Copy"
         on:click={() => {
           copyText();
