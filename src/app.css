@@ -187,4 +187,8 @@ input {
     .titlebx {
         margin-left: 0px;
     }
+
+    .content {
+        flex-direction: column;
+    }
 }
