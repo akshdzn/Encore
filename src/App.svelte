@@ -178,7 +178,7 @@
                         window
                             .open("https://github.com/akshdzn/Encore", "_blank")
                             .focus();
-                    }}>GITHUB</button
+                    }}>ABOUT</button
                 >
 
                 <button
