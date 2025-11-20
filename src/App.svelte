@@ -173,12 +173,12 @@
 
             <div class="buttons-top">
                 <button
-                    aria-label="About"
+                    aria-label="Github"
                     on:click={() => {
                         window
                             .open("https://github.com/akshdzn/Encore", "_blank")
                             .focus();
-                    }}>ABOUT</button
+                    }}>GITHUB</button
                 >
 
                 <button
