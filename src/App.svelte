@@ -248,3 +248,5 @@
         </div>
     </div>
 </main>
+
+// implement a better ui ux for encoding and decoding
